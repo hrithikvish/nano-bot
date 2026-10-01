@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -11,7 +13,8 @@ android {
 
     defaultConfig {
         applicationId = "com.hrithikvish.nanobot"
-        minSdk = 29
+        // AppFunctions discovery and execution need Android 16.
+        minSdk = 36
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
@@ -45,7 +48,20 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.hilt.lifecycle.viewmodel.compose)
+
+    implementation(libs.androidx.appfunctions)
+    implementation(libs.mlkit.genai.prompt)
+    implementation(libs.mlkit.genai.schema)
+    ksp(libs.mlkit.genai.schema.compiler)
+
     testImplementation(libs.junit)
+    // Android's org.json is a stub in JVM unit tests.
+    testImplementation(libs.org.json)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -2,7 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Package visibility for apps that expose AppFunctions. -->
+    <queries>
+        <intent>
+            <action android:name="android.app.appfunctions.AppFunctionService" />
+        </intent>
+    </queries>
+
     <application
+        android:name=".NanoBotApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,10 +27,15 @@
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
+    <!-- run_privileged.sh starts this to give NanoBot the EXECUTE_APP_FUNCTIONS permission. -->
+    <instrumentation
+        android:name=".ShellIdentityInstrumentation"
+        android:label="Shell Identity Instrumentation"
+        android:targetPackage="com.hrithikvish.nanobot" />
 
 </manifest>
