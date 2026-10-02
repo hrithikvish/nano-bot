@@ -48,12 +48,17 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.ui.res.painterResource
+import com.hrithikvish.nanobot.R
 import org.json.JSONObject
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun ChatScreen(
     instrumentationError: String?,
+    onNavigateToAppFunctions: (() -> Unit)? = null,
     viewModel: ChatViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -92,6 +97,14 @@ fun ChatScreen(
                     }
                 },
                 actions = {
+                    if (onNavigateToAppFunctions != null) {
+                        IconButton(onClick = onNavigateToAppFunctions) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_widgets),
+                                contentDescription = "View App Functions and Tools",
+                            )
+                        }
+                    }
                     TextButton(onClick = viewModel::refreshTools) {
                         Text("Refresh")
                     }
@@ -171,8 +184,8 @@ private fun StatusBanner(state: ChatUiState, instrumentationError: String?) {
         instrumentationError?.let { add("Privileged mode failed: $it") }
     }
     if (lines.isEmpty()) return
-    Card(
-        colors = CardDefaults.cardColors(
+    OutlinedCard(
+        colors = CardDefaults.outlinedCardColors(
             containerColor = MaterialTheme.colorScheme.errorContainer,
         ),
     ) {
@@ -189,9 +202,9 @@ private fun Bubble(text: String, fromUser: Boolean) {
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = if (fromUser) Alignment.CenterEnd else Alignment.CenterStart,
     ) {
-        Card(
+        OutlinedCard(
             modifier = Modifier.widthIn(max = 320.dp),
-            colors = CardDefaults.cardColors(
+            colors = CardDefaults.outlinedCardColors(
                 containerColor = if (fromUser) {
                     MaterialTheme.colorScheme.primaryContainer
                 } else {

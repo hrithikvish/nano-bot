@@ -2,6 +2,7 @@
 agp = "9.5.0-alpha08"
 coreKtx = "1.19.1"
 junit = "4.13.2"
+kotlinxCoroutinesTest = "1.10.1"
 orgJson = "20260814"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
@@ -15,10 +16,12 @@ appfunctions = "1.0.0-alpha12"
 mlkitGenaiPrompt = "1.0.0-beta4"
 mlkitGenaiSchema = "1.0.0-alpha1"
 composeBom = "2026.02.01"
+navigationCompose = "2.8.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 org-json = { group = "org.json", name = "json", version.ref = "orgJson" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -40,6 +43,7 @@ androidx-appfunctions = { group = "androidx.appfunctions", name = "appfunctions"
 mlkit-genai-prompt = { group = "com.google.mlkit", name = "genai-prompt", version.ref = "mlkitGenaiPrompt" }
 mlkit-genai-schema = { group = "com.google.mlkit", name = "genai-schema", version.ref = "mlkitGenaiSchema" }
 mlkit-genai-schema-compiler = { group = "com.google.mlkit", name = "genai-schema-compiler", version.ref = "mlkitGenaiSchema" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

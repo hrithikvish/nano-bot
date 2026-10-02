@@ -2,10 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Package visibility for apps that expose AppFunctions. -->
+    <!-- Package visibility queries for apps that expose AppFunctions -->
     <queries>
         <intent>
             <action android:name="android.app.appfunctions.AppFunctionService" />
+        </intent>
+        <intent>
+            <action android:name="androidx.appfunctions.AppFunctionService" />
+        </intent>
+        <intent>
+            <action android:name="androidx.appfunctions.action.APP_FUNCTION_SERVICE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
         </intent>
     </queries>
 
